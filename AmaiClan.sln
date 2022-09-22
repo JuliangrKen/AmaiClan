@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmaiClan.Bot", "AmaiClan.Bot\AmaiClan.Bot.csproj", "{CEC2B0F6-5972-479C-BE1E-75B6770ABA19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F6F916CE-882F-40F5-9243-CE01ED34EE19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEC2B0F6-5972-479C-BE1E-75B6770ABA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC2B0F6-5972-479C-BE1E-75B6770ABA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC2B0F6-5972-479C-BE1E-75B6770ABA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC2B0F6-5972-479C-BE1E-75B6770ABA19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CEC2B0F6-5972-479C-BE1E-75B6770ABA19} = {F6F916CE-882F-40F5-9243-CE01ED34EE19}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9CDE94FF-924B-42F0-8C1E-28915C877A01}
+	EndGlobalSection
+EndGlobal
