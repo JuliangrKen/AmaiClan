@@ -18,10 +18,8 @@ var socketConfig = new DiscordSocketConfig()
 // Инициализация, настойка и запуск бота
 var discordBot = new DiscordBot(socketConfig, DiscordBotConfig.GetFromFile());
 
-
 // Добавляем сервисы
 DiscordBot.Services.AddSingleton<ILogger, ConsoleLogger>();
 DiscordBot.Services.AddTransient<SlashCommandHandle>();
 
 await discordBot.Run();
-
