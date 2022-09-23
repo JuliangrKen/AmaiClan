@@ -1,4 +1,5 @@
 ﻿using AmaiClan.Bot.Configuration;
+using AmaiClan.Bot.Handles;
 using AmaiClan.Bot.Services;
 using Discord;
 using Discord.WebSocket;
@@ -11,15 +12,17 @@ namespace AmaiClan.Bot
     /// </summary>
     public class DiscordBot
     {
+        public static IServiceCollection Services { get; } = new ServiceCollection();
+
         public DiscordSocketClient SocketClient { get; }
-        public IServiceCollection Services { get; }
+
 
         private readonly DiscordBotConfig botConfig;
         
         public DiscordBot(DiscordSocketConfig socketConfig, DiscordBotConfig botConfig)
         {
+            Services.AddSingleton(this);
             SocketClient = new DiscordSocketClient(socketConfig);
-            Services = new ServiceCollection().AddSingleton(this);
             this.botConfig = botConfig;
         }
 
@@ -41,6 +44,9 @@ namespace AmaiClan.Bot
 
             // Все сервисы, добавленные в Program, будут подключены ниже
             SocketClient.Log += (LogMessage message) => build.GetService<ILogger>()?.Log(message);
+
+            // Используем обработчики
+            SocketClient.Ready += () => build.GetService<SlashCommandHandle>()?.HandleAsync();
         }
     }
 }
