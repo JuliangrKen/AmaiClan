@@ -6,14 +6,6 @@ namespace AmaiClan.Bot.Commands
 {
     public abstract class SlashCommandBase : InteractionModuleBase<SocketInteractionContext>
     {
-        protected DiscordBot DiscordBot { get; set; }
-
-        protected SlashCommandBase()
-        {
-            DiscordBot = DiscordBot.Services.BuildServiceProvider().GetService<DiscordBot>() ?? 
-                throw new ArgumentNullException();
-        }
-
         /// <summary>
         /// Метод для получения случайного цвета
         /// </summary>
