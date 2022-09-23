@@ -1,6 +1,5 @@
 ﻿using Discord;
 using Discord.Interactions;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AmaiClan.Bot.Commands
 {
