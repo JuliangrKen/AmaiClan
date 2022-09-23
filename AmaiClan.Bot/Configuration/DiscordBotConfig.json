@@ -1,6 +1,4 @@
 ﻿{
-	// Токен дискорд бота из https://discord.com/developers/applications (строго строка, т.е. в кавычках)
 	"Token": null,
-	// DiscordID определённого юзера предоставления ему особых команд разработчика (строго число)
 	"DevDiscordID": 0
 }
