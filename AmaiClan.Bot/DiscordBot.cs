@@ -8,22 +8,28 @@ using Microsoft.Extensions.DependencyInjection;
 namespace AmaiClan.Bot
 {
     /// <summary>
-    /// Основной класс для создания бота, во многом являющийся фасадом DiscordSocketClient
+    /// Основной класс для работы с ботом, во многом являющийся фасадом DiscordSocketClient
     /// </summary>
     public class DiscordBot
     {
-        public static IServiceCollection Services { get; } = new ServiceCollection();
-
         public DiscordSocketClient SocketClient { get; }
-
 
         private readonly DiscordBotConfig botConfig;
         
-        public DiscordBot(DiscordSocketConfig socketConfig, DiscordBotConfig botConfig)
+        // Services:
+        private readonly ILogger logger;
+        private readonly SlashCommandHandle slashCommandHandle;
+
+        public DiscordBot(DiscordSocketClient socketClient,
+            DiscordBotConfig botConfig, 
+            ILogger logger,
+            SlashCommandHandle slashCommandHandle)
         {
-            Services.AddSingleton(this);
-            SocketClient = new DiscordSocketClient(socketConfig);
+            SocketClient = socketClient;
+
             this.botConfig = botConfig;
+            this.logger = logger;
+            this.slashCommandHandle = slashCommandHandle;
         }
 
         /// <summary>
@@ -40,13 +46,11 @@ namespace AmaiClan.Bot
 
         private void BuildServices()
         {
-            var build = Services.BuildServiceProvider();
-
             // Все сервисы, добавленные в Program, будут подключены ниже
-            SocketClient.Log += (LogMessage message) => build.GetService<ILogger>()?.Log(message);
+            SocketClient.Log += (LogMessage message) => logger.Log(message);
 
             // Используем обработчики
-            SocketClient.Ready += () => build.GetService<SlashCommandHandle>()?.HandleAsync();
+            SocketClient.Ready += () => slashCommandHandle.HandleAsync();
         }
     }
 }

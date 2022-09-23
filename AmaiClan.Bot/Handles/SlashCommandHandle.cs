@@ -7,27 +7,26 @@ namespace AmaiClan.Bot.Handles
 {
     public class SlashCommandHandle
     {
-        private readonly DiscordBot discordBot;
+        private readonly IServiceProvider serviceProvider;
         private readonly InteractionService interactionService;
+        private readonly DiscordSocketClient discordSocketClient;
 
-        public SlashCommandHandle(DiscordBot discordBot)
+        public SlashCommandHandle(IServiceProvider serviceProvider, DiscordSocketClient discordSocketClient)
         {
-            this.discordBot = discordBot;
-            interactionService = new InteractionService(discordBot.SocketClient);
+            this.serviceProvider = serviceProvider;
+            interactionService = new InteractionService(discordSocketClient);
+            this.discordSocketClient = discordSocketClient;
         }
 
         public async Task HandleAsync()
         {
-            var provider = DiscordBot.Services.BuildServiceProvider();
-            var client = discordBot.SocketClient;
+            await interactionService.AddModulesAsync(Assembly.GetEntryAssembly(), serviceProvider);
+            await RegisterCommandForEveryoneGuilds(discordSocketClient);
 
-            await interactionService.AddModulesAsync(Assembly.GetEntryAssembly(), provider);
-            await RegisterCommandForEveryoneGuilds(client);
-
-            client.InteractionCreated += async interaction =>
+            discordSocketClient.InteractionCreated += async interaction =>
             {
-                var scope = provider.CreateScope();
-                var ctx = new SocketInteractionContext(client, interaction);
+                var scope = serviceProvider.CreateScope();
+                var ctx = new SocketInteractionContext(discordSocketClient, interaction);
                 await interactionService.ExecuteCommandAsync(ctx, scope.ServiceProvider);
             };
         }

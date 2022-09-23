@@ -15,11 +15,19 @@ var socketConfig = new DiscordSocketConfig()
     GatewayIntents = GatewayIntents.None
 };
 
-// Инициализация, настойка и запуск бота
-var discordBot = new DiscordBot(socketConfig, DiscordBotConfig.GetFromFile());
+var services = new ServiceCollection();
 
-// Добавляем сервисы
-DiscordBot.Services.AddSingleton<ILogger, ConsoleLogger>();
-DiscordBot.Services.AddTransient<SlashCommandHandle>();
+// Добавляем сервисы:
+services.AddSingleton(new DiscordSocketClient(socketConfig));
+services.AddSingleton(DiscordBotConfig.GetFromFile());
+services.AddSingleton<ILogger, ConsoleLogger>();
+// Обработчики:
+services.AddTransient<SlashCommandHandle>();
+
+services.AddSingleton<DiscordBot>();
+
+var discordBot = services.BuildServiceProvider().GetService<DiscordBot>();
+if (discordBot == null)
+    throw new ArgumentNullException();
 
 await discordBot.Run();
