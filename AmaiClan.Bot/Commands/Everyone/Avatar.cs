@@ -5,7 +5,7 @@ namespace AmaiClan.Bot.Commands.Everyone
 {
     public class Avatar : SlashCommandBase
     {
-        [SlashCommand("avatar", "получить случайное число")]
+        [SlashCommand("avatar", "получить аватар пользователя")]
         public async Task Invoke(IUser user)
         {
             var avatarUrl = user.GetAvatarUrl(ImageFormat.Auto, 2048);
