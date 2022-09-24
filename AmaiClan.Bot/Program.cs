@@ -12,7 +12,7 @@ var socketConfig = new DiscordSocketConfig()
     AlwaysDownloadUsers = true,
     ConnectionTimeout = 10_000,
     MessageCacheSize = 100,
-    GatewayIntents = GatewayIntents.None
+    GatewayIntents = GatewayIntents.AllUnprivileged
 };
 
 var services = new ServiceCollection();
