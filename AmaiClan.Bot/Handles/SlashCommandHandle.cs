@@ -1,4 +1,5 @@
-﻿using Discord.Interactions;
+﻿using AmaiClan.Bot.Configuration;
+using Discord.Interactions;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -10,18 +11,22 @@ namespace AmaiClan.Bot.Handles
         private readonly IServiceProvider serviceProvider;
         private readonly InteractionService interactionService;
         private readonly DiscordSocketClient discordSocketClient;
+        private readonly DiscordBotConfig discordBotConfig;
 
-        public SlashCommandHandle(IServiceProvider serviceProvider, DiscordSocketClient discordSocketClient)
+        public SlashCommandHandle(IServiceProvider serviceProvider, 
+            DiscordSocketClient discordSocketClient, 
+            DiscordBotConfig discordBotConfig)
         {
             this.serviceProvider = serviceProvider;
             interactionService = new InteractionService(discordSocketClient);
             this.discordSocketClient = discordSocketClient;
+            this.discordBotConfig = discordBotConfig;
         }
 
         public async Task HandleAsync()
         {
             await interactionService.AddModulesAsync(Assembly.GetEntryAssembly(), serviceProvider);
-            await RegisterCommandForEveryoneGuilds(discordSocketClient);
+            await interactionService.RegisterCommandsToGuildAsync(discordBotConfig.GuildID);
 
             discordSocketClient.InteractionCreated += async interaction =>
             {
@@ -29,14 +34,6 @@ namespace AmaiClan.Bot.Handles
                 var ctx = new SocketInteractionContext(discordSocketClient, interaction);
                 await interactionService.ExecuteCommandAsync(ctx, scope.ServiceProvider);
             };
-        }
-
-        private Task RegisterCommandForEveryoneGuilds(DiscordSocketClient client)
-        {
-            foreach(var guild in client.Guilds)
-                interactionService.RegisterCommandsToGuildAsync(guild.Id);
-
-            return Task.CompletedTask;
         }
     }
 }

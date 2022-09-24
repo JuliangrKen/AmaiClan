@@ -1,4 +1,7 @@
 ﻿{
 	"Token": null,
-	"DevDiscordID": 0
+	"DevDiscordID": 0,
+	"GuildID": 0,
+	"AutoRoleID": 0,
+	"VerifiedRoleID": 0
 }

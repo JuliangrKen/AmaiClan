@@ -10,6 +10,9 @@ namespace AmaiClan.Bot.Configuration
     {
         public string? Token { get; set; }
         public ulong DevDiscordID { get; set; }
+        public ulong GuildID { get; set; }
+        public ulong AutoRoleID { get; set; }
+        public ulong VerifiedRoleID { get; set; }
 
         public static DiscordBotConfig GetFromFile(string? path = null)
         {

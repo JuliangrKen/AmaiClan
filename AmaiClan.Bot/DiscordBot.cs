@@ -51,6 +51,7 @@ namespace AmaiClan.Bot
 
             // Используем обработчики
             SocketClient.Ready += () => slashCommandHandle.HandleAsync();
+            SocketClient.UserJoined += (SocketGuildUser user) => user.AddRoleAsync(botConfig.AutoRoleID);
         }
     }
 }
