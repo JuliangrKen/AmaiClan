@@ -26,8 +26,8 @@ namespace AmaiClan.Bot.Commands.Admin
             embedBuilder.WithImageUrl(imageUrl);
             embedBuilder.WithColor(GetRandomColor());
 
-            //var a = new RequestOptions();
-            await RespondAsync(embed: embedBuilder.Build());
+            await RespondAsync("Принято в работу", ephemeral: true);
+            await Context.Channel.SendMessageAsync(embed: embedBuilder.Build());
         }
     }
 }
