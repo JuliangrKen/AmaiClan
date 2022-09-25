@@ -1,4 +1,5 @@
 ﻿using AmaiClan.Bot;
+using AmaiClan.Bot.Commands.Admin;
 using AmaiClan.Bot.Configuration;
 using AmaiClan.Bot.Handles;
 using AmaiClan.Bot.Services;
@@ -23,6 +24,8 @@ services.AddSingleton(DiscordBotConfig.GetFromFile());
 services.AddSingleton<ILogger, ConsoleLogger>();
 // Обработчики:
 services.AddTransient<SlashCommandHandle>();
+//Команды, требующие интеграцию с сервисами:
+services.AddTransient<VerifyUser>();
 
 services.AddSingleton<DiscordBot>();
 
