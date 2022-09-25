@@ -3,7 +3,6 @@ using AmaiClan.Bot.Handles;
 using AmaiClan.Bot.Services;
 using Discord;
 using Discord.WebSocket;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AmaiClan.Bot
 {
