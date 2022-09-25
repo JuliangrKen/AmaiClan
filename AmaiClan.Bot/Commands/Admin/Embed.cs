@@ -8,7 +8,7 @@ namespace AmaiClan.Bot.Commands.Admin
     /// </summary>
     public class Embed : SlashCommandBase
     {
-        [SlashCommand("embed", "создать embed")]
+        [SlashCommand("embed", @"создать embed (\n для переноса строки в description)")]
         public async Task Invoke(
             string? author = null,
             string? title = null,
@@ -21,7 +21,7 @@ namespace AmaiClan.Bot.Commands.Admin
 
             embedBuilder.WithAuthor(author);
             embedBuilder.WithTitle(title);
-            embedBuilder.WithDescription(description);
+            embedBuilder.WithDescription(description?.Replace(@"\n", "\n"));
             embedBuilder.WithFooter(footer);
             embedBuilder.WithImageUrl(imageUrl);
             embedBuilder.WithColor(GetRandomColor());
