@@ -4,11 +4,11 @@ using Discord.WebSocket;
 
 namespace AmaiClan.Bot.Commands.Admin
 {
-    public class VerifyUser : SlashCommandBase
+    public class Verify : SlashCommandBase
     {
         private readonly DiscordBotConfig botConfig;
 
-        public VerifyUser(DiscordBotConfig botConfig)
+        public Verify(DiscordBotConfig botConfig)
         {
             this.botConfig = botConfig;
         }

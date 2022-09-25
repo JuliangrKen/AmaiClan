@@ -25,7 +25,7 @@ services.AddSingleton<ILogger, ConsoleLogger>();
 // Обработчики:
 services.AddTransient<SlashCommandHandle>();
 //Команды, требующие интеграцию с сервисами:
-services.AddTransient<VerifyUser>();
+services.AddTransient<Verify>();
 
 services.AddSingleton<DiscordBot>();
 
