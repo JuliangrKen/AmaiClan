@@ -13,7 +13,7 @@ namespace AmaiClan.Bot.Commands.Admin
             this.botConfig = botConfig;
         }
 
-        [SlashCommand("verify", "верефицировать и добавить роли пользователю")]
+        [SlashCommand("verify", "верифицировать и добавить роли пользователю")]
         public async Task Invoke(SocketGuildUser user, 
             SocketRole? role1 = null, 
             SocketRole? role2 = null, 
