@@ -1,6 +1,4 @@
 ﻿using AmaiClan.Bot;
-using AmaiClan.Bot.Commands.Admin;
-using AmaiClan.Bot.Commands.Everyone;
 using AmaiClan.Bot.Configuration;
 using AmaiClan.Bot.Handles;
 using AmaiClan.Bot.Services;
