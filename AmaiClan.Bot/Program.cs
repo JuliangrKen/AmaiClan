@@ -1,5 +1,6 @@
 ﻿using AmaiClan.Bot;
 using AmaiClan.Bot.Commands.Admin;
+using AmaiClan.Bot.Commands.Everyone;
 using AmaiClan.Bot.Configuration;
 using AmaiClan.Bot.Handles;
 using AmaiClan.Bot.Services;
@@ -18,14 +19,17 @@ var socketConfig = new DiscordSocketConfig()
 
 var services = new ServiceCollection();
 
+services.AddSingleton<HttpClient>();
 // Добавляем сервисы:
 services.AddSingleton(new DiscordSocketClient(socketConfig));
 services.AddSingleton(DiscordBotConfig.GetFromFile());
 services.AddSingleton<ILogger, ConsoleLogger>();
+services.AddTransient<IRule34Parser, Rule34Parser>();
 // Обработчики:
 services.AddTransient<SlashCommandHandle>();
 //Команды, требующие интеграцию с сервисами:
 services.AddTransient<Verify>();
+services.AddTransient<Rule34>();
 
 services.AddSingleton<DiscordBot>();
 
