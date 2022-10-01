@@ -6,6 +6,7 @@ namespace AmaiClan.Bot.Commands.Admin
 {
     public class Clear : SlashCommandBase
     {
+        [RequireUserPermission(ChannelPermission.ManageMessages)]
         [SlashCommand("clear", "очистить сообщения канала")]
         public async Task Invoke(int num)
         {

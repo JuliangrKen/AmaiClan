@@ -8,6 +8,7 @@ namespace AmaiClan.Bot.Commands.Admin
     /// </summary>
     public class Embed : SlashCommandBase
     {
+        [RequireUserPermission(ChannelPermission.ManageMessages)]
         [SlashCommand("embed", @"создать embed (\n для переноса строки в description)")]
         public async Task Invoke(
             string? author = null,

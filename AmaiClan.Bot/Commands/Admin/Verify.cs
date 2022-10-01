@@ -1,9 +1,11 @@
 ﻿using AmaiClan.Bot.Configuration;
+using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
 
 namespace AmaiClan.Bot.Commands.Admin
 {
+    [RequireUserPermission(GuildPermission.ManageRoles)]
     public class Verify : SlashCommandBase
     {
         private readonly DiscordBotConfig botConfig;
