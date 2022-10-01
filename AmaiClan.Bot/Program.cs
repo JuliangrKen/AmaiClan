@@ -31,6 +31,6 @@ services.AddSingleton<DiscordBot>();
 
 var discordBot = services.BuildServiceProvider().GetService<DiscordBot>();
 if (discordBot == null)
-    throw new ArgumentNullException();
+    throw new ArgumentNullException(nameof(discordBot));
 
 await discordBot.Run();
