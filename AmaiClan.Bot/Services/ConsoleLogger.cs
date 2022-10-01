@@ -6,14 +6,11 @@ namespace AmaiClan.Bot.Services
     {
         public Task Log(string arg)
         {
-            Console.WriteLine(arg);
+            Console.WriteLine($"[{DateTime.Now}] - {arg}");
             return Task.CompletedTask;
         }
 
-        public Task Log(LogMessage arg)
-        {
-            Console.WriteLine(arg.Message);
-            return Task.CompletedTask;
-        }
+        public Task Log(LogMessage arg) =>
+            Log(arg.Message);
     }
 }
