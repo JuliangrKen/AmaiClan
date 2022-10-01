@@ -27,9 +27,6 @@ services.AddSingleton<ILogger, ConsoleLogger>();
 services.AddTransient<IRule34Parser, Rule34Parser>();
 // Обработчики:
 services.AddTransient<SlashCommandHandle>();
-//Команды, требующие интеграцию с сервисами:
-services.AddTransient<Verify>();
-services.AddTransient<Rule34>();
 
 services.AddSingleton<DiscordBot>();
 
