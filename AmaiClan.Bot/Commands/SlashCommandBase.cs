@@ -5,18 +5,26 @@ namespace AmaiClan.Bot.Commands
 {
     public abstract class SlashCommandBase : InteractionModuleBase<SocketInteractionContext>
     {
+        private readonly int minIndexColor;
+        private readonly int maxIndexColor;
+
+        protected SlashCommandBase()
+        {
+            // Поставлен такой минимум, чтобы цвета не были тёмными
+            minIndexColor = 150;
+            maxIndexColor = 255;
+        }
+
         /// <summary>
         /// Метод для получения случайного цвета
         /// </summary>
         /// <returns></returns>
         protected Color GetRandomColor()
         {
-            // Поставлен такой минимум, чтобы цвета не были тёмными
-            var min = 150;
-            var max = 255;
-
             var random = new Random();
-            return new Color(random.Next(min, max), random.Next(min, max), random.Next(min, max));
+            return new Color(random.Next(minIndexColor, maxIndexColor), 
+                random.Next(minIndexColor, maxIndexColor), 
+                random.Next(minIndexColor, maxIndexColor));
         }
     }
 }
