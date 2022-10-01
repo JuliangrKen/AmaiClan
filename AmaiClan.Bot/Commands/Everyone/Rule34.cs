@@ -25,7 +25,7 @@ namespace AmaiClan.Bot.Commands.Everyone
                     .WithImageUrl(url)
                     .WithColor(GetRandomColor());
 
-                await RespondAsync(embed: embedBuilder.Build());
+                await RespondAsync(embed: embedBuilder.Build(), ephemeral: true);
             }
             catch
             {
