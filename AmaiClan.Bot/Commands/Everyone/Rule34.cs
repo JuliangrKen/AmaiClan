@@ -1,7 +1,6 @@
 ﻿using AmaiClan.Bot.Services;
 using Discord;
 using Discord.Interactions;
-using Discord.WebSocket;
 
 namespace AmaiClan.Bot.Commands.Everyone
 {
