@@ -25,6 +25,7 @@ services.AddSingleton(new DiscordSocketClient(socketConfig));
 services.AddSingleton(DiscordBotConfig.GetFromFile());
 services.AddSingleton<ILogger, ConsoleLogger>();
 services.AddTransient<IRule34Parser, Rule34Parser>();
+services.AddTransient<IAnimeGoParser, AnimeGoParser>();
 // Обработчики:
 services.AddTransient<SlashCommandHandle>();
 
