@@ -25,11 +25,11 @@ namespace AmaiClan.Bot.Commands.Everyone
                     .WithImageUrl(url)
                     .WithColor(GetRandomColor());
 
-                await RespondAsync(embed: embedBuilder.Build(), ephemeral: true);
+                await RespondAsync(embed: embedBuilder.Build());
             }
             catch
             {
-                await RespondAsync("Произошла ошибка, повторите попытку!");
+                await RespondAsync("Произошла ошибка, повторите попытку!", ephemeral: true);
             }
         }
     }
